@@ -3,7 +3,7 @@ import Date from "./components/Date";
 import Weather from "./components/Weather";
 import Search from "./components/Search";
 import { createContext, useEffect, useState } from "react";
-
+export const Context = createContext();
 function App() {
   const [search, setSearch] = useState("");
   const [date, setDate] = useState("");
