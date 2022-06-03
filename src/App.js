@@ -1,10 +1,11 @@
 import './App.css';
 import Date from "./components/Date";
 import Weather from "./components/Weather";
+import Search from "./components/Search";
 import { createContext, useEffect, useState } from "react";
 
 function App() {
-  const [place, setPlace] = useState("");
+  const [searc, setSearch] = useState("");
   const [date, setDate] = useState("");
   const [temp, setTemp] = useState("");
   return (
