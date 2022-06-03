@@ -10,9 +10,11 @@ function App() {
   const [temp, setTemp] = useState("");
   return (
     <div className="App">
-      <header className="App-header">
-   
-      </header>
+      <Context.Provider value ={{search, setSearch, date, setDate, temp, setTemp}}>
+      <Search />
+      <Date />
+      <Weather />
+      </Context.Provider>
     </div>
   );
 }
