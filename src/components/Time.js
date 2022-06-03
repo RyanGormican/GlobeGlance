@@ -5,7 +5,7 @@ function Time() {
 
   return (
     
-   <div className="searching">
+   <div className="time">
     
 </div>
 
