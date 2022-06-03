@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../App";
+import { getDate } from "./Date.js";
+import { getTemp } from "./Weather.js";
 function Search() {
  const { search, setSearch} = useContext(Context);
 
