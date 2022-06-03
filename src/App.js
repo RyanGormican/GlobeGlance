@@ -1,18 +1,19 @@
 import './App.css';
-import Date from "./components/Date";
+import Time from "./components/Time";
 import Weather from "./components/Weather";
 import Search from "./components/Search";
 import { createContext, useEffect, useState } from "react";
 export const Context = createContext();
 function App() {
   const [search, setSearch] = useState("");
-  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [timezone, setTimeZone] = useState("");
   const [temp, setTemp] = useState("");
   return (
     <div className="App">
-      <Context.Provider value ={{search, setSearch, date, setDate, temp, setTemp}}>
+      <Context.Provider value ={{search, setSearch, time, setTime, timezone, setTimeZone, temp, setTemp}}>
       <Search />
-      <Date />
+      <Time />
       <Weather />
       </Context.Provider>
     </div>
