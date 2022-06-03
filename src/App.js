@@ -1,12 +1,12 @@
 import './App.css';
 import Date from "./components/Date";
 import Weather from "./components/Weather";
-const api = {
-  key:"7bc27f1250aecc83d9e85aa10edc9203"
-  base: "https://api.openweathermap.org/data/2.5/"
-}
+import { createContext, useEffect, useState } from "react";
 
 function App() {
+  const [place, setPlace] = useState("");
+  const [date, setDate] = useState("");
+  const [temp, setTemp] = useState("");
   return (
     <div className="App">
       <header className="App-header">
