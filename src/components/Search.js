@@ -7,10 +7,10 @@ function Search() {
     
    <div className="searching">
    <input type = "text" className="search-tag" onChange={ e => setSearch.value)}
-    <value ={search}
+    value ={search}
     onKeyPress: function(event){ 
-      
-      
+     getDate();
+     getTemp();
     }
     
 
