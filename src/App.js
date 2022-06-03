@@ -5,7 +5,7 @@ import Search from "./components/Search";
 import { createContext, useEffect, useState } from "react";
 
 function App() {
-  const [searc, setSearch] = useState("");
+  const [search, setSearch] = useState("");
   const [date, setDate] = useState("");
   const [temp, setTemp] = useState("");
   return (
