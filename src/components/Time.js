@@ -7,7 +7,7 @@ const updateTime = useCallback((event) => {
    var searching = {search};
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
-        xmlHttp.responseText;}
+         callback(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "https://timezone.abstractapi.com/v1/current_time/?api_key=e4ff1ca165584a108b275349a35255a8&location=" + searching, true); // true for asynchronous
     xmlHttp.send(null);
