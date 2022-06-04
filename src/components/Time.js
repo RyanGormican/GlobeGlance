@@ -13,7 +13,7 @@ const updateTime = useCallback((event) => {
     xmlHttp.send(null);
  setTime(xmlHttp.datetime);
  setTimeZone(xmlHttp.timezone_abbreviation);
-})
+};
   useEffect(() => {
       document.addEventListener("onChange",updateTime)
       return ( ) => { 
