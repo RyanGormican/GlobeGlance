@@ -20,12 +20,12 @@ const updateTime = useCallback((event) => {
          document.removeEventListener("onChange",updateTime);
       };
    }, [updateTime]);
-  return (){
+  return (
     
    <div className="time">
    { time }  { timezone } 
 </div>
-
-};
+);
+}
 
 export default Time;
