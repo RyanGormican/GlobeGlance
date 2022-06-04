@@ -2,6 +2,8 @@ import React, {useCallback, useContext, useEffect } from "react";
 import { Context } from "../App";
 function Time() {
  const { search, time, setTime, timezone, setTimeZone} = useContext(Context);
+ var time = { time };
+ var timeZone = { timezone };
 const updateTime = useCallback((event) => {
    var xmlHttp = new XMLHttpRequest();
    var searching = {search};
@@ -23,7 +25,8 @@ const updateTime = useCallback((event) => {
   return (
     
    <div className="time">
-   { time }  { timezone } 
+  document.write(time);
+ document.write(timeZone);
 </div>
 );
 }
