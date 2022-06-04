@@ -6,7 +6,7 @@ function Time() {
   return (
     
    <div className="time">
-    
+   { time }  { timezone } 
 </div>
 
 
