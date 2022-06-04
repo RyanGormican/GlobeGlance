@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { Context } from "../App";
 function Weather() {
  const { search, temp, setTemp} = useContext(Context);
