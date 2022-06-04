@@ -6,7 +6,7 @@ function Search() {
   return (
    <div>
    <input type = "text" className="search-tag" onChange={ e => setSearch(e.target.value)}
-    value ={search}>
+    value ={search} />
     
 </div>
 );
