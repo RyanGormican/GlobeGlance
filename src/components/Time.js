@@ -31,4 +31,4 @@ const updateTime = useCallback((event) => {
 );
 }
 
-export default Search;
+export default Time;
