@@ -1,4 +1,4 @@
-import React, { callback, useCallback, useContext, useEffect } from "react";
+import React, {useCallback, useContext, useEffect } from "react";
 import { Context } from "../App";
 function Time() {
  const { search, time, setTime, timezone, setTimeZone} = useContext(Context);
@@ -6,8 +6,8 @@ const updateTime = useCallback((event) => {
    var xmlHttp = new XMLHttpRequest();
    var searching = {search};
     xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-        callback(xmlHttp.responseText);
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+        xmlHttp.responseText;}
     }
     xmlHttp.open("GET", "https://timezone.abstractapi.com/v1/current_time/?api_key=e4ff1ca165584a108b275349a35255a8&location=" + searching, true); // true for asynchronous
     xmlHttp.send(null);
