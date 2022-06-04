@@ -23,7 +23,7 @@ const updateTime = useCallback(() => {
   return (
     
    <div className="time">
-  document.getElementById('time').innerHTML = { time } + { timeZone };
+  document.getElementById('time').innerHTML = { time } + { timezone };
 </div>
 );
 }
