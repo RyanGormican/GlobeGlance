@@ -15,20 +15,17 @@ const updateTime = useCallback((event) => {
  setTimeZone(xmlHttp.timezone_abbreviation);
 };
   useEffect(() => {
-      document.addEventListener("onChange",updateTime)
+      document.addEventListener("onChange",updateTime);
       return ( ) => { 
-         document.removeEventListener("onChange",updateTime)
+         document.removeEventListener("onChange",updateTime);
       };
    }, [updateTime]);
-  return (
+  return (){
     
    <div className="time">
    { time }  { timezone } 
 </div>
 
-
-
-);
-}
+};
 
 export default Time;
