@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { callback, useCallback, useContext, useEffect } from "react";
 import { Context } from "../App";
 function Time() {
  const { search, time, setTime, timezone, setTimeZone} = useContext(Context);
