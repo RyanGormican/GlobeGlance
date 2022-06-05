@@ -12,9 +12,9 @@ const updateTemp = useCallback((event) => {
  
 })
   useEffect(() => {
-         document.getElementsByClassName("search-tag").addEventListener("onChange",updateTemp());
+         document.addEventListener("onChange",updateTemp());
       return ( ) => { 
-          document.getElementsByClassName("search-tag").removeEventListener("onChange",updateTemp())
+          document.removeEventListener("onChange",updateTemp())
       };
    }, [updateTemp]);
   return (
