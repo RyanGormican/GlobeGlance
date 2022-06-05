@@ -21,10 +21,12 @@ const updateTime = useCallback(() => {
 });
   useEffect(() => {
   var searcht = document.querySelector('search-tag');
-      searcht.addEventListener("onblur",updateTime());
+   if (searcht){
+      searcht.addEventListener("onfocus",updateTime());
       return ( ) => { 
-          searcht.removeEventListener("onblur",updateTime());
+          searcht.removeEventListener("onfocus",updateTime());
       };
+   }
    }, [updateTime]);
   return (
     
