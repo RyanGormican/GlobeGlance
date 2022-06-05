@@ -1,12 +1,30 @@
 .App {
   text-align: center;
+  background-color: #121212;
+  height: fit-content;
+  width: fit-content;
+  /* display: flex; */
+  color: white;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+nav {
+  height: 60px;
+  width: 100%;
+  margin: 0;
+  border-bottom: 1px solid grey;
+  display: grid;
+  place-items: center;
+}
+nav h1 {
+  margin: 0;
+  font-family: Georgia, Helvetica, sans-serif;
+  color: white;
+  font-size: 45px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -16,6 +34,8 @@
 {
  border: 2px black;
  text-align: center;
+  font-family: Georgia, Helvetica, sans-serif;
+  font-size 12px;
 }
 .App-header {
   background-color: #282c34;
