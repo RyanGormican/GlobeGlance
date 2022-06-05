@@ -3,7 +3,7 @@ import { Context } from "../App";
 function Search() {
  const { search, setSearch} = useContext(Context);
 function change(e){
- e => setSearch(e.target.value);
+setSearch(e.target.value);
  var searcht = { search };
  console.log( searcht);
 }
