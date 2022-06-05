@@ -22,7 +22,7 @@ const updateTime = useCallback(() => {
   useEffect(() => {
       document.getElementsByClassName("search-tag").addEventListener("onChange",updateTime);
       return ( ) => { 
-         document.removeEventListener("onChange",updateTime);
+          document.getElementsByClassName("search-tag").removeEventListener("onChange",updateTime);
       };
    }, [updateTime]);
   return (
