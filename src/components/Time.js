@@ -13,6 +13,7 @@ const updateTime = useCallback(() => {
         var json_obj = JSON.parse(xmlHttp.responseText);
        setTime(xmlHttp.datetime);
        setTimeZone(xmlHttp.timezone_abbreviation);
+       document.getElementById('time').innerHTML = { time } + { timezone };
     }};
   xmlHttp.send(null);
     
@@ -27,7 +28,7 @@ const updateTime = useCallback(() => {
   return (
     
    <div className="time">
-  document.getElementById('time').innerHTML = { time } + { timezone };
+
 </div>
 );
 }
