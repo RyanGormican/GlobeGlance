@@ -14,7 +14,7 @@ const updateTime = useCallback(() => {
        setTime(xmlHttp.datetime);
        setTimeZone(xmlHttp.timezone_abbreviation);
     }};
- xhr.send(null);
+  xmlHttp.send(null);
     
 
 });
