@@ -9,7 +9,7 @@ function change(){
   return (
    <div>
    <input type = "text" className="search-tag" onChange={e => setSearch(e.target.value)} 
-    value ={search} onKeyPress=change() />
+    value ={search} onKeyPress={change()} />
     
 </div>
 );
