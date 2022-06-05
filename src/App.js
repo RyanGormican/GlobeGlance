@@ -11,6 +11,11 @@ function App() {
   const [temp, setTemp] = useState("");
   return (
     <div className="App">
+    <nav>
+    <h1>
+    GlobeGlance
+    </h1>
+    </nav>
       <Context.Provider value ={{search, setSearch, time, setTime, timezone, setTimeZone, temp, setTemp}}>
       <Search />
       <Time />
