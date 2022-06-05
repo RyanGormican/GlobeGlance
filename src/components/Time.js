@@ -20,9 +20,10 @@ const updateTime = useCallback(() => {
 
 });
   useEffect(() => {
-      document.addEventListener("onblur",updateTime());
+   searcht = document.querySelect('search-tag');
+      searcht.addEventListener("onblur",updateTime());
       return ( ) => { 
-          document.removeEventListener("onblur",updateTime());
+          searcht.removeEventListener("onblur",updateTime());
       };
    }, [updateTime]);
   return (
