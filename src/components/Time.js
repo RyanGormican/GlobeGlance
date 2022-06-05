@@ -13,7 +13,8 @@ const updateTime = useCallback(() => {
         var json_obj = JSON.parse(xmlHttp.responseText);
        setTime(xmlHttp.datetime);
        setTimeZone(xmlHttp.timezone_abbreviation);
-    }
+    }};
+ xhr.send(null);
     
 
 });
