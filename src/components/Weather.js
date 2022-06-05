@@ -12,7 +12,7 @@ const updateTemp = useCallback((event) => {
  
 })
   useEffect(() => {
-   searcht = document.querySelect('search-tag');
+   var searcht = document.querySelect('search-tag');
          searcht.addEventListener("onfocus",updateTemp());
       return ( ) => { 
           searcht.removeEventListener("onfocus",updateTemp())
