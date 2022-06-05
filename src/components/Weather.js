@@ -12,10 +12,9 @@ const updateTemp = useCallback((event) => {
  
 })
   useEffect(() => {
-     const select = document.querySelector('.search-tag');
-      select.addEventListener("onChange",updateTemp)
+         document.getElementsByClassName("search-tag").addEventListener("onChange",updateTemp);
       return ( ) => { 
-         document.removeEventListener("onChange",updateTemp)
+          document.getElementsByClassName("search-tag").removeEventListener("onChange",updateTemp)
       };
    }, [updateTemp]);
   return (
