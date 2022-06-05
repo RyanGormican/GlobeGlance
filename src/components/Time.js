@@ -5,14 +5,15 @@ function Time() {
 const updateTime = useCallback(() => {
    var xmlHttp = new XMLHttpRequest();
    var searching = {search};
-    xmlHttp.onreadystatechange = function() {
+    xmlHttp.addEventListener("readystatechange", () => {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-     jsonResponse = JSON.parse(xmlHttp.responseText);
+         this.setTime(xmlHttp.datetime);
+         this.setTimeZone(xmlHttp.timezone_abbreviation);
+    })
     };
     xmlHttp.open("GET", "https://timezone.abstractapi.com/v1/current_time/?api_key=e4ff1ca165584a108b275349a35255a8&location=" + searching, true); // true for asynchronous
     xmlHttp.send(null);
- setTime(xmlHttp.datetime);
- setTimeZone(xmlHttp.timezone_abbreviation);
+
 });
   useEffect(() => {
       document.addEventListener("onChange",updateTime);
