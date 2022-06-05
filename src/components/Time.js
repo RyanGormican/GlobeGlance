@@ -20,8 +20,7 @@ const updateTime = useCallback(() => {
 
 });
   useEffect(() => {
-   const select = document.querySelector('.search-tag');
-      select.addEventListener("onChange",updateTime);
+      document.getElementsByClassName("search-tag").addEventListener("onChange",updateTime);
       return ( ) => { 
          document.removeEventListener("onChange",updateTime);
       };
