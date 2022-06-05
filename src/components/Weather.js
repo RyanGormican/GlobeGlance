@@ -7,7 +7,9 @@ const updateTemp = useCallback((event) => {
         .then(res => res.json())
         .then(result => {
          setTemp(result);
+     document.getElementById('temp').innerHTML = { temp }
         });
+ 
 })
   useEffect(() => {
      const select = document.querySelector('.search-tag');
@@ -19,7 +21,7 @@ const updateTemp = useCallback((event) => {
   return (
     
    <div className="temp">
-   { temp } 
+
 </div>
 
 
