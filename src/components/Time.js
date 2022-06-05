@@ -29,7 +29,7 @@ const updateTime = useCallback(() => {
   return (
     
    <div className="time">
-
+    |Time|
 </div>
 );
 }
