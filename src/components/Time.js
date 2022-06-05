@@ -11,8 +11,8 @@ const updateTime = useCallback(() => {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
         {
         var json_obj = JSON.parse(xmlHttp.responseText);
-       setTime(xmlHttp.datetime);
-       setTimeZone(xmlHttp.timezone_abbreviation);
+       setTime(json_obj.datetime);
+       setTimeZone(json_obj.timezone_abbreviation);
        document.getElementById('time').innerHTML = { time } + { timezone };
     }};
   xmlHttp.send(null);
@@ -20,9 +20,9 @@ const updateTime = useCallback(() => {
 
 });
   useEffect(() => {
-      document.getElementsByClassName("search-tag").addEventListener("onChange",updateTime());
+      document.addEventListener("onChange",updateTime());
       return ( ) => { 
-          document.getElementsByClassName("search-tag").removeEventListener("onChange",updateTime());
+          document.removeEventListener("onChange",updateTime());
       };
    }, [updateTime]);
   return (
