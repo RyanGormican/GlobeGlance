@@ -20,9 +20,9 @@ const updateTime = useCallback(() => {
 
 });
   useEffect(() => {
-      document.addEventListener("onChange",updateTime());
+      document.addEventListener("onblur",updateTime());
       return ( ) => { 
-          document.removeEventListener("onChange",updateTime());
+          document.removeEventListener("onblur",updateTime());
       };
    }, [updateTime]);
   return (
