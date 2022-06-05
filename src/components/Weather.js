@@ -21,7 +21,7 @@ const updateTemp = useCallback((event) => {
   return (
     
    <div className="temp">
-
+|Temp|
 </div>
 
 
