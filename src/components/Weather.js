@@ -13,10 +13,12 @@ const updateTemp = useCallback((event) => {
 })
   useEffect(() => {
    var searcht = document.querySelector('search-tag');
+   if(searcht){
          searcht.addEventListener("onfocus",updateTemp());
       return ( ) => { 
           searcht.removeEventListener("onfocus",updateTemp())
       };
+   }
    }, [updateTemp]);
   return (
     
