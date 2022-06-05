@@ -5,7 +5,7 @@ function Search() {
 
   return (
    <div>
-   <input type = "text" className="search-tag" onChange={ e => setSearch(e.target.value); console.log( { search } ) }
+   <input type = "text" className="search-tag" onChange={ e => setSearch(e.target.value); console.log( { search } ); }
     value ={search} />
     
 </div>
