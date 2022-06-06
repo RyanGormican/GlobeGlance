@@ -2,8 +2,9 @@ import React, {useCallback, useContext, useEffect } from "react";
 import { Context } from "../App";
 function Time() {
  const { search, time, setTime, timezone, setTimeZone} = useContext(Context);
-const updateTime = useCallback(() => {
-   var xmlHttp = new XMLHttpRequest();
+const updateTime = useCallback((event) => {
+ if (event.key === "Enter") { 
+ var xmlHttp = new XMLHttpRequest();
    var searching = {search};
  
  xmlHttp.open("GET", "https://timezone.abstractapi.com/v1/current_time/?api_key=e4ff1ca165584a108b275349a35255a8&location=" + searching, true); // true for asynchronous
@@ -17,14 +18,14 @@ const updateTime = useCallback(() => {
     }};
   xmlHttp.send(null);
     
-
+ }
 });
   useEffect(() => {
-  var searcht = document.getElementsByClassName("search-tag");
+  var searcht = document.getElementById("search-tag");
    if (searcht){
-      searcht.addEventListener("onfocus",updateTime());
+      searcht.addEventListener("onKeyPress",updateTime());
       return ( ) => { 
-          searcht.removeEventListener("onfocus",updateTime());
+          searcht.removeEventListener("onKeyPress",updateTime());
       };
    }
    }, [updateTime]);
