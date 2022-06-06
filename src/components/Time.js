@@ -3,6 +3,7 @@ import { Context } from "../App";
 function Time() {
  const { search, time, setTime, timezone, setTimeZone} = useContext(Context);
 const updateTime = useCallback((event) => {
+ if(event.key === undefined) {return}
  if (event.key === "Enter") { 
  var xmlHttp = new XMLHttpRequest();
    var searching = {search};
