@@ -2,8 +2,9 @@ import React, {useCallback, useContext, useEffect } from "react";
 import { Context } from "../App";
 function Time() {
  const { search, time, setTime, timezone, setTimeZone} = useContext(Context);
-const updateTime = useCallback((event) => {
-  if (event.keyCode == 13) { 
+const updateTime = useCallback((e) => {
+ if (e.keyCode === undefined){return}
+  if (e.keyCode == 13) { 
  var xmlHttp = new XMLHttpRequest();
    var searching = {search};
  
