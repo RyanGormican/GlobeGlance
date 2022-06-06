@@ -23,9 +23,9 @@ const updateTime = useCallback((event) => {
   useEffect(() => {
   var searcht = document.getElementById("search-tag");
    if (searcht){
-      searcht.addEventListener("onKeyPress",updateTime());
+      searcht.addEventListener('keydown' ,updateTime());
       return ( ) => { 
-          searcht.removeEventListener("onKeyPress",updateTime());
+          searcht.removeEventListener('keydown' ,updateTime());
       };
    }
    }, [updateTime]);
