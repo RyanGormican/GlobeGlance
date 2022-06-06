@@ -16,9 +16,9 @@ const updateTemp = useCallback((event) => {
   useEffect(() => {
    var searcht = document.getElementById("search-tag");
    if(searcht){
-         searcht.addEventListener("onKeyPress",updateTemp());
+         searcht.addEventListener("onKeyPress",updateTemp(event));
       return ( ) => { 
-          searcht.removeEventListener("onKeyPress",updateTemp())
+          searcht.removeEventListener("onKeyPress",updateTemp(event))
       };
    }
    }, [updateTemp]);
