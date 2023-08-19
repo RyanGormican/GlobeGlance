@@ -40,8 +40,12 @@ return (
 			<Icon icon="icon-park-outline:return" height="60" color="white"/>
 			</div>
 		<div className="Dashboard">
-		<h1> {search} </h1>
+		<div>
+		<p>	{search} </p>
+		 </div>
+		 <div>
 		<Table dataSource={dataSource} columns={columns}/>
+		</div>
 		</div>
 	</div>
 )
