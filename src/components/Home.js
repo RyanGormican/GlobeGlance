@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Icon } from '@iconify/react';
 import {useNavigate} from 'react-router-dom';
+import Autosuggest from 'react-autosuggest';
 export default function Home() {
 const [search, setSearch] = useState('');
 const navigate = useNavigate();
@@ -30,8 +31,7 @@ return (
 		GlobeGlance
 		<Icon icon="mdi:globe" />
 		<div>
-		<input type ="text"   onChange={(event) => setSearch(event.target.value)}/>
-		<button onClick={sendSearch} > Search </button >
+		<Autosuggest />
 		</div>
 		</div>
 		
