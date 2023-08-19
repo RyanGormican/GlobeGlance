@@ -27,7 +27,17 @@ return (
       </div>
 		<div className= "Title">
 		<Icon icon="mdi:globe" />
-		GlobeGlance
+		<span className="flicker-title">G</span>
+  <span className="flicker-title">l</span>
+  <span className="flicker-title">o</span>
+  <span className="flicker-title">b</span>
+  <span className="flicker-title">e</span>
+  <span className="flicker-title">G</span>
+  <span className="flicker-title">l</span>
+  <span className="flicker-title">a</span>
+  <span className="flicker-title">n</span>
+  <span className="flicker-title">c</span>
+  <span className="flicker-title">e</span>
 		<Icon icon="mdi:globe" />
 		<div>
 		<input type ="text"   onChange={(event) => setSearch(event.target.value)}/>
