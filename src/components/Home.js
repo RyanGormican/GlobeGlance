@@ -5,7 +5,12 @@ export default function Home() {
 const [search, setSearch] = useState('');
 const navigate = useNavigate();
 const sendSearch = () => {
-	navigate('/{search}')
+	if (!search)
+	{
+		return;
+	}else{
+		navigate(`/dashboard/${search}`)
+	}
 }
 return (
 	<div className= "Home">
@@ -13,7 +18,7 @@ return (
         <a href="https://www.linkedin.com/in/ryangormican/">
           <Icon icon="mdi:linkedin" color="#0e76a8" width="60" />
         </a>
-        <a href="https://github.com/RyanGormican/CardCache">
+        <a href="https://github.com/RyanGormican/GlobeGlance">
           <Icon icon="mdi:github" color="#e8eaea" width="60" />
         </a>
         <a href="https://ryangormicanportfoliohub.vercel.app/">

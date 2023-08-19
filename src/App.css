@@ -21,4 +21,19 @@ z-index: 5;
 }
 .Dashboard{
 	color:white;
+	text-align:center;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-family: helvetica;
+	width: 80vw;
+	padding-top:40vh
+}
+.return{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	display: flex;
+	cursor: pointer;
+		z-index: 1;
 }
