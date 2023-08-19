@@ -15,7 +15,6 @@ const grabWeather = async () => {
     const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=7bc27f1250aecc83d9e85aa10edc9203`);
     const coordinates = await coords.json();
     const { lat, lon} = coordinates[0];
-    console.log(coordinates);
     setTheLat(lat);
     setTheLon(lon);
     const weather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=7bc27f1250aecc83d9e85aa10edc9203`);
@@ -31,7 +30,6 @@ const grabWeather = async () => {
         setTemperature(temperature);
         setWeather(weatherDescription);
         setWindSpeed(windSpeed);
-        console.log(weatherData);
       } else {
         console.log('Error fetching weather data:', weatherData.message);
       }
