@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import { Icon } from '@iconify/react';
+import {useNavigate} from 'react-router-dom';
 export default function Home() {
 const [search, setSearch] = useState('');
+const navigate = useNavigate();
+const sendSearch = () => {
+	navigate('/{search}')
+}
 return (
 	<div className= "Home">
 	 <div className="links">
@@ -21,7 +26,7 @@ return (
 		<Icon icon="mdi:globe" />
 		<div>
 		<input type ="text"   onChange={(event) => setSearch(event.target.value)}/>
-		<button onClick > Search <button />
+		<button onClick={sendSearch} > Search </button >
 		</div>
 		</div>
 		
