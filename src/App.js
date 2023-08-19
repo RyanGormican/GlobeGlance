@@ -1,26 +1,23 @@
+import logo from './logo.svg';
 import './App.css';
-import Time from "./components/Time";
-import Weather from "./components/Weather";
-import Search from "./components/Search";
-import { createContext, useEffect, useState } from "react";
-export const Context = createContext();
+
 function App() {
-  const [search, setSearch] = useState("");
-  const [time, setTime] = useState("");
-  const [timezone, setTimeZone] = useState("");
-  const [temp, setTemp] = useState("");
   return (
     <div className="App">
-    <nav>
-    <h1>
-    GlobeGlance
-    </h1>
-    </nav>
-      <Context.Provider value ={{search, setSearch, time, setTime, timezone, setTimeZone, temp, setTemp}}>
-      <Search />
-      <Time />
-      <Weather />
-      </Context.Provider>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
