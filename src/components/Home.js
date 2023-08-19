@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 export default function Home() {
 const [search, setSearch] = useState('');
-const [suggestions, setSuggestion] = useState ([]);
+const [suggestions, setSuggestions] = useState ([]);
 const navigate = useNavigate();
 const sendSearch = () => {
 	if (!search)
@@ -34,10 +34,29 @@ const getSuggestions = async () => {
       return [];
     }
 
-}
-useEffect(() =>{
-grabCities();
-},[]);
+};
+const debouncedGetSuggestions = debounce(getSuggetions,300);
+
+const onSuggestionsFetchRequested = async ({ value}) => {
+  const suggestions = await debouncedGetSuggestions(value);
+  setSuggestions(suggestions);  
+};
+const onSuggestionsClearRequest = () => {
+    setSuggestions([]);
+};
+
+const getSuggestionsValue = (suggestion) => suggestion;
+
+const renderSuggestion = (suggestion) => <div>{suggestion} </div>;
+const onSuggestionSelected = (event, { suggestion }) => {
+    navigate(`/dashboard/${suggestion}`);
+};
+
+const inputProps = {
+    value: search,
+    onChange: (event, { newValue}) => setSearch(newValue),
+};
+
 return (
 	<div className= "Home">
 	 <div className="links">
@@ -58,6 +77,12 @@ return (
 		<div>
         <Autosuggest
             suggestions={suggestions}
+            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={onSuggestionsClearRequested}
+            getSuggestionsValue={getSuggestionsValue}
+            renderSuggestion={renderSuggestion}
+            onSuggestionSelected={onSuggestionSelected}
+            inputProps={inputProps}
          />
 		</div>
 		</div>
