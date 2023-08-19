@@ -76,8 +76,8 @@ return (
           <Col span={12}>
             Temperature:
           </Col>
-          <Col span={12}>
-          {temperature}
+          <Col span={12} style={{ fontFamily: 'Arial, sans-serif' }}>
+          {`${temperature-273.15}\u00B0C`}
           </Col>
         </Row>
         <Row gutter={[16, 16]} justify="center">
