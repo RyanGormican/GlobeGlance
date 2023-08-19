@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 export default function Home() {
 const [search, setSearch] = useState('');
+const [suggestions, setSuggestion] = useState ([]);
 const navigate = useNavigate();
 const sendSearch = () => {
 	if (!search)
@@ -13,7 +14,7 @@ const sendSearch = () => {
 		navigate(`/dashboard/${search}`)
 	}
 }
-const grabCities = async () => {
+const getSuggestions = async () => {
   const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities`;
     const options = {
       method: 'GET',
@@ -23,9 +24,15 @@ const grabCities = async () => {
       },
     };
 
-    const response = await fetch(url, options);
-    const data = await response.json();
-    console.log(data);
+  try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+
+      return data.data.map((city) => city.city);
+    } catch (error) {
+      console.error('Error fetching suggestions:', error);
+      return [];
+    }
 
 }
 useEffect(() =>{
@@ -49,6 +56,9 @@ return (
 		GlobeGlance
 		<Icon icon="mdi:globe" />
 		<div>
+        <Autosuggest
+            suggestions={suggestions}
+         />
 		</div>
 		</div>
 		
