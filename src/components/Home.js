@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Icon } from '@iconify/react';
 export default function Home() {
+const [search, setSearch] = useState('');
 return (
 	<div className= "Home">
 	 <div className="links">
@@ -19,7 +20,8 @@ return (
 		GlobeGlance
 		<Icon icon="mdi:globe" />
 		<div>
-		<input type ="text" />
+		<input type ="text"   onChange={(event) => setSearch(event.target.value)}/>
+		<button onClick > Search <button />
 		</div>
 		</div>
 		
