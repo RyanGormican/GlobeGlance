@@ -26,7 +26,7 @@ return (
         </a>
       </div>
 		<div className= "Title">
-		<Icon icon="mdi:globe" />
+	  <span className="flicker-title">	<Icon icon="mdi:globe" /> </span>
 		<span className="flicker-title">G</span>
   <span className="flicker-title">l</span>
   <span className="flicker-title">o</span>
@@ -38,7 +38,7 @@ return (
   <span className="flicker-title">n</span>
   <span className="flicker-title">c</span>
   <span className="flicker-title">e</span>
-		<Icon icon="mdi:globe" />
+ <span className="flicker-title">		<Icon icon="mdi:globe" /> </span>
 		<div>
 		<input type ="text"   onChange={(event) => setSearch(event.target.value)}/>
 		<button onClick={sendSearch} > Search </button >
