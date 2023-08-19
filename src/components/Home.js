@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Icon } from '@iconify/react';
 import {useNavigate} from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
@@ -13,6 +13,24 @@ const sendSearch = () => {
 		navigate(`/dashboard/${search}`)
 	}
 }
+const grabCities = async () => {
+  const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'a8d8ec1be0msh966006cb3a2cc91p117112jsne0110c5c10f0',
+        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
+      },
+    };
+
+    const response = await fetch(url, options);
+    const data = await response.json();
+    console.log(data);
+
+}
+useEffect(() =>{
+grabCities();
+},[]);
 return (
 	<div className= "Home">
 	 <div className="links">
@@ -31,7 +49,6 @@ return (
 		GlobeGlance
 		<Icon icon="mdi:globe" />
 		<div>
-		<Autosuggest />
 		</div>
 		</div>
 		
