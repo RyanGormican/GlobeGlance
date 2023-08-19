@@ -26,8 +26,6 @@ z-index: 5;
 	justify-content: center;
 	align-items: center;
 	font-family: helvetica;
-	width: 80vw;
-	padding-top:40vh
 }
 .return{
 	position: absolute;

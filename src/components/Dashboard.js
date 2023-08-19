@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
-import { Table } from 'antd';
+import { Col, Row } from 'antd';
 import {useNavigate, useParams} from 'react-router-dom';
 export default function Dashboard() {
 const params = useParams();
@@ -9,43 +9,40 @@ const search = params.search;
 const goHome = () => {
 		navigate('/')
 	}
-const dataSource = [
-  {
-    key: '1',
-    name: 'Mike',
-	address: '10 Downing Street',
-  },
-  {
-    key: '2',
-    name: 'John',
-    address: '10 Downing Street',
-  },
-];
 
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-];
 return (
 	<div className="Home">
 		<div className= 'return' onClick={goHome} >
 			<Icon icon="icon-park-outline:return" height="60" color="white"/>
 			</div>
 		<div className="Dashboard">
-		<div>
-		<p>	{search} </p>
-		 </div>
 		 <div>
-		<Table dataSource={dataSource} columns={columns}/>
-		</div>
+ <Row gutter={[16, 16]} justify="center">
+          <Col span={20}>
+            <h1>{search}</h1>
+          </Col>
+        </Row>
+        <Row gutter={[16, 16]} justify="center">
+          <Col span={20}>
+         
+          </Col>
+        </Row>
+        <Row gutter={[16, 16]} justify="center">
+          <Col span={20}>
+         
+          </Col>
+        </Row>
+        <Row gutter={[16, 16]} justify="center">
+          <Col span={20}>
+        
+          </Col>
+        </Row>
+        <Row gutter={[16, 16]} justify="center">
+          <Col span={20}>
+      
+          </Col>
+        </Row>
+      </div>
 		</div>
 	</div>
 )
