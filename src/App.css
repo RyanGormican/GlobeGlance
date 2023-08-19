@@ -27,6 +27,15 @@ z-index: 5;
 	align-items: center;
 	font-family: helvetica;
 }
+.DashboardText{
+	color:white;
+	text-align:center;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-family: helvetica;
+	font-size:5vh;
+}
 .return{
 	position: absolute;
 	left: 10px;

@@ -17,14 +17,17 @@ return (
 			</div>
 		<div className="Dashboard">
 		 <div>
- <Row gutter={[16, 16]} justify="center">
+ <Row justify="center">
           <Col span={20}>
             <h1>{search}</h1>
           </Col>
         </Row>
-        <Row gutter={[16, 16]} justify="center">
-          <Col span={20}>
-         
+        <Row gutter={[16, 16]}>
+          <Col span={10}>
+            Temperature:
+          </Col>
+          <Col span={10}>
+          30
           </Col>
         </Row>
         <Row gutter={[16, 16]} justify="center">
