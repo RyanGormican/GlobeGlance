@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Icon } from '@iconify/react';
 import {useNavigate} from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
+import debounce from 'lodash.debounce';
 export default function Home() {
 const [search, setSearch] = useState('');
 const [suggestions, setSuggestions] = useState ([]);
@@ -35,13 +36,13 @@ const getSuggestions = async () => {
     }
 
 };
-const debouncedGetSuggestions = debounce(getSuggetions,300);
+const debouncedGetSuggestions = debounce(getSuggestions,300);
 
 const onSuggestionsFetchRequested = async ({ value}) => {
   const suggestions = await debouncedGetSuggestions(value);
   setSuggestions(suggestions);  
 };
-const onSuggestionsClearRequest = () => {
+const onSuggestionsClearRequested = () => {
     setSuggestions([]);
 };
 
