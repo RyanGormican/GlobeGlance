@@ -1,5 +1,13 @@
 .Home{
-	background-color: #5e5439;
+	background-color: #292419;
 	width: 100vw;
 	height: 100vh;
+}
+
+.Title{
+	color:white;
+	text-align:center;
+	font-size:10vh;
+	padding-top:40vh;
+	font-family: Times-New-Roman,Helvetica;
 }
