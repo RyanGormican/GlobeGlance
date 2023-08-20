@@ -10,7 +10,7 @@ const search = params.search;
 const [theLat, setTheLat] = useState(0);
 const [theLon, setTheLon] = useState(0);
 const [windspeed,setWindSpeed] = useState(0);
-const [weather, setWeather] = useState('');
+const [weather, setWeather] = useState('Unknown');
 const [humidity, setHumidity] = useState(0);
 const [feelsliketemperature,setFeelsLikeTemperature] = useState(0);
 const [population, setPopulation] = useState(0);
@@ -19,7 +19,7 @@ const [sunset, setSunset] = useState(0);
 const [elevation, setElevation] = useState(0);
 const [timezone, setTimezone] = useState(0);
 const [kilometers, setKilometers] = useState(0);
-const [country, setCountry] = useState('');
+const [country, setCountry] = useState('Unknown');
 const getArea = async () => {
 
     const response = await fetch(
@@ -44,10 +44,51 @@ const response = await fetch(
   const data = await response.json();
   const abbreviation = data.abbreviation;
 
-  const timeZoneMapping = {
+const timeZoneMapping = {
   'CST': 'Central Standard Time',
-  };
-  
+  'MST': 'Morocco Standard Time',
+  'CUT': 'Coordinated Universal Time',
+  'GST': 'Greenwich Standard Time',
+  'GMT': 'GMT Standard Time',
+  'WET': 'Western European Time',
+  'CET': 'Central European Time',
+  'WEST': 'Western European Summer Time',
+  'CEST': 'Central European Summer Time',
+  'RST': 'Romance Standard Time',
+  'CEST': 'Central European Summer Time',
+  'WCAST': 'West Central Africa Standard Time',
+  'NST': 'Namibia Standard Time',
+  'JST': 'Jordan Standard Time',
+  'GTB': 'GTB Standard Time',
+  'MEST': 'Middle East Standard Time',
+  'EST': 'Egypt Standard Time',
+  'SST': 'Syria Standard Time',
+  'SAST': 'South Africa Standard Time',
+  'FST': 'FLE Standard Time',
+  'TST': 'Turkey Standard Time',
+  'JST': 'Jerusalem Standard Time',
+  'EEST': 'Eastern European Summer Time',
+  'AST': 'Arabic Standard Time',
+  'KST': 'Krasnoyarsk Standard Time',
+  'ACST': 'Australian Central Standard Time',
+  'AEST': 'Australian Eastern Standard Time',
+  'LHST': 'Lord Howe Standard Time',
+  'SBT': 'Solomon Islands Time',
+  'NZST': 'New Zealand Time',
+  'AZOT': 'Azores Time',
+  'UTC-02': 'Coordinated Universal Time-2',
+  'AT': 'Atlantic Time',
+  'NST': 'Newfoundland Standard Time',
+  'AST': 'Atlantic Standard Time',
+  'VET': 'Venezuela Time',
+  'EST': 'Eastern Standard Time',
+  'MST': 'Mountain Standard Time',
+  'PST': 'Pacific Standard Time',
+  'AKT': 'Alaska Time',
+  'MART': 'Marquesas Islands Time',
+  'HST': 'Hawaii-Aleutian Standard Time',
+  'UTC-11': 'Coordinated Universal Time-11',
+};
   setTimezone(timeZoneMapping[abbreviation] || 'Unknown');
 };
 const getElevation = async () => {
@@ -80,7 +121,6 @@ const grabWeather = async () => {
         const weatherDescription = currentWeather.weather[0].description;
         const windSpeed = currentWeather.wind.speed;
         const temperature = currentWeather.main.temp;
-        console.log(weatherData);
         // Update the state with the extracted data
         setTemperature(temperature);
         setWeather(weatherDescription);
