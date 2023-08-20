@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Icon } from '@iconify/react';
 import {useNavigate} from 'react-router-dom';
+import { Button } from 'antd';
 export default function Home() {
 const [search, setSearch] = useState('');
 const navigate = useNavigate();
@@ -41,7 +42,7 @@ return (
  <span className="flicker-title">		<Icon icon="mdi:globe" /> </span>
 		<div>
 		<input type ="text"   onChange={(event) => setSearch(event.target.value)}/>
-		<button onClick={sendSearch} > Search </button >
+		<Button onClick={sendSearch} > Search </Button >
 		</div>
 		</div>
 		

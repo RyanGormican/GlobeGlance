@@ -1,5 +1,5 @@
 .Home{
-	background-color: #292419;
+	background-color: #21201c;
 	width: 100vw;
 	height: 100vh;
 }
@@ -53,7 +53,7 @@ z-index: 5;
   }
 }
 .flicker-title {
-  animation: flicker 5s forwards;
+  animation: flicker 5s infinite;
   display: inline-block;
 }
 

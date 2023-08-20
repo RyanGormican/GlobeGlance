@@ -11,6 +11,8 @@ const [theLat, setTheLat] = useState(0);
 const [theLon, setTheLon] = useState(0);
 const [windspeed,setWindSpeed] = useState(0);
 const [weather, setWeather] = useState('');
+const [humidity, setHumidity] = useState(0);
+const [feelsliketemperature,setFeelsLikeTemperature] = useState(0);
 const grabWeather = async () => {
     const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=7bc27f1250aecc83d9e85aa10edc9203`);
     const coordinates = await coords.json();
@@ -25,11 +27,13 @@ const grabWeather = async () => {
         const weatherDescription = currentWeather.weather[0].description;
         const windSpeed = currentWeather.wind.speed;
         const temperature = currentWeather.main.temp;
-
+        console.log(weatherData);
         // Update the state with the extracted data
         setTemperature(temperature);
         setWeather(weatherDescription);
         setWindSpeed(windSpeed);
+        setHumidity(currentWeather.main.humidity)
+        setFeelsLikeTemperature(currentWeather.main.feels_like)
       } else {
         console.log('Error fetching weather data:', weatherData.message);
       }
@@ -53,7 +57,7 @@ return (
             <h1>{search}</h1>
           </Col>
            <Col span={24}>
-            <h1>Geographical</h1>
+            <h1>Geographical <Icon icon="material-symbols:map" /></h1>
           </Col>
         </Row>
            <Row gutter={[16, 16]}>
@@ -72,12 +76,26 @@ return (
           {theLon}
           </Col>
         </Row>
+          
+             <Row gutter={[16, 16]}>
+          <Col span={24}>
+           <h1> Weather Conditions <Icon icon="mdi:weather-sunny" /></h1>
+          </Col>
+        </Row>
         <Row gutter={[16, 16]}>
           <Col span={12}>
             Temperature:
           </Col>
           <Col span={12} style={{ fontFamily: 'Arial, sans-serif' }}>
           {`${temperature-273.15}\u00B0C`}
+          </Col>
+        </Row>
+          <Row gutter={[16, 16]}>
+          <Col span={12}>
+            Feels Like:
+          </Col>
+          <Col span={12} style={{ fontFamily: 'Arial, sans-serif' }}>
+          {`${(feelsliketemperature-273.15)}\u00B0C`}
           </Col>
         </Row>
         <Row gutter={[16, 16]} justify="center">
@@ -90,15 +108,18 @@ return (
         </Row>
         <Row gutter={[16, 16]} justify="center">
             <Col span={12}>
-            Wind Speed
+            Wind Speed:
           </Col>
             <Col span={12}>
                  {windspeed}
           </Col>
         </Row>
         <Row gutter={[16, 16]} justify="center">
-          <Col span={20}>
-      
+        <Col span={12}>
+            Humidity:
+          </Col>
+            <Col span={12}>
+                 {humidity}
           </Col>
         </Row>
       </div>
