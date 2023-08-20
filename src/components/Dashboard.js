@@ -21,7 +21,6 @@ const [timezone, setTimezone] = useState(0);
 const [kilometers, setKilometers] = useState(0);
 const [country, setCountry] = useState('Unknown');
 const getArea = async () => {
-
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?lat=${theLat}&lon=${theLon}&format=json&zoom=10`);
     const data = await response.json();
@@ -38,8 +37,9 @@ const getArea = async () => {
 
 };
 const getTimezone = async () => {
+const timezoneKey = process.env.REACT_APP_TIMEZONE_API_KEY;
 const response = await fetch(
-`http://api.timezonedb.com/v2.1/get-time-zone?key=GOHK7HORUUNM&format=json&by=position&lat=${theLat}&lng=${theLon}`
+`http://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneKey}&format=json&by=position&lat=${theLat}&lng=${theLon}`
 );
   const data = await response.json();
   const abbreviation = data.abbreviation;
@@ -108,12 +108,13 @@ const calculateArea = (boundingBox) => {
      return area.toFixed(2);
 };
 const grabWeather = async () => {
-    const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=7bc27f1250aecc83d9e85aa10edc9203`);
+const openWeatherAPIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+    const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=${openWeatherAPIKey}`);
     const coordinates = await coords.json();
     const { lat, lon} = coordinates[0];
     setTheLat(lat.toFixed(5));
     setTheLon(lon.toFixed(5));
-    const weather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=7bc27f1250aecc83d9e85aa10edc9203`);
+    const weather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=${openWeatherAPIKey}`);
     const weatherData = await weather.json();
     if (weatherData.cod === '200') {
         // Extract relevant weather information
