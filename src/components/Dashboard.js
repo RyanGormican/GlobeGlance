@@ -13,6 +13,10 @@ const [windspeed,setWindSpeed] = useState(0);
 const [weather, setWeather] = useState('');
 const [humidity, setHumidity] = useState(0);
 const [feelsliketemperature,setFeelsLikeTemperature] = useState(0);
+const [population, setPopulation] = useState(0);
+const [sunrise, setSunrise] = useState(0);
+const [sunset, setSunset] = useState(0);
+const [timezone, setTimezone] = useState(0);
 const grabWeather = async () => {
     const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=7bc27f1250aecc83d9e85aa10edc9203`);
     const coordinates = await coords.json();
@@ -34,6 +38,12 @@ const grabWeather = async () => {
         setWindSpeed(windSpeed);
         setHumidity(currentWeather.main.humidity)
         setFeelsLikeTemperature(currentWeather.main.feels_like)
+        setPopulation(weatherData.city.population)
+        const sunriseTime = new Date (weatherData.city.sunrise * 1000);
+         const sunsetTime = new Date (weatherData.city.sunset * 1000);
+         const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+        setSunrise(sunriseTime.toLocaleTimeString('en-US', timeOptions));
+        setSunset(sunsetTime.toLocaleTimeString('en-US', timeOptions));
       } else {
         console.log('Error fetching weather data:', weatherData.message);
       }
@@ -76,13 +86,43 @@ return (
           {theLon}
           </Col>
         </Row>
+           <Row gutter={[16, 16]}>
+          <Col span={12}>
+            Timezone
+          </Col>
+          <Col span={12}>
+       
+          </Col>
+        </Row>
+        <Row gutter={[16, 16]}>
+          <Col span={6}>
+            Sunrise:
+          </Col>
+          <Col span={6} style={{ fontFamily: 'Arial, sans-serif' }}>
+            {sunrise}
+          </Col>
+            <Col span={6}>
+            Sunset:
+          </Col>
+          <Col span={6} style={{ fontFamily: 'Arial, sans-serif' }}>
+            {sunset}
+          </Col>
+        </Row>
+         <Row gutter={[16, 16]}>
+          <Col span={12}>
+            Population
+          </Col>
+          <Col span={12}>
+          {population}
+          </Col>
+        </Row>
           
              <Row gutter={[16, 16]}>
           <Col span={24}>
            <h1> Weather Conditions <Icon icon="mdi:weather-sunny" /></h1>
           </Col>
         </Row>
-        <Row gutter={[16, 16]}>
+           <Row gutter={[16, 16]}>
           <Col span={12}>
             Temperature:
           </Col>
