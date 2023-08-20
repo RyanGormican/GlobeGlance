@@ -178,15 +178,21 @@ const getGeo = async () => {
   };
 
 useEffect(() => {
-  getGeo()
-    .then(() => getArea())
-    .then(() => grabWeather())
-    .then(() => getElevation())
-    .then(() => getTimezone())
-    .catch(error => {
+  const fetchData = async () => {
+    try {
+      await getGeo();
+      await getArea();
+      await grabWeather();
+      await getElevation();
+      await getTimezone();
+    } catch (error) {
       console.error('Error in API calls:', error);
-    });
+    }
+  };
+
+  fetchData();
 }, [search]);
+
 
   return (
     <div className="Home">
