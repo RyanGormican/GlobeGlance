@@ -28,6 +28,8 @@ export default function Dashboard() {
     console.log(data);
     setTheLat(data[0].lat);
     setTheLon(data[0].lon);
+    console.log(theLat);
+    console.log(theLon);
   };
   const getArea = async () => {
     const response = await fetch(
