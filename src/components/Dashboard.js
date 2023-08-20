@@ -7,8 +7,8 @@ const params = useParams();
 const [temperature, setTemperature] = useState('');
 const navigate = useNavigate();
 const search = params.search;
-const [theLat, setTheLat] = useState(0);
-const [theLon, setTheLon] = useState(0);
+const [theLat, setTheLat] = useState(40.7128);
+const [theLon, setTheLon] = useState(-73.935242);
 const [windspeed,setWindSpeed] = useState(0);
 const [weather, setWeather] = useState('Unknown');
 const [humidity, setHumidity] = useState(0);
@@ -20,12 +20,23 @@ const [elevation, setElevation] = useState(0);
 const [timezone, setTimezone] = useState(0);
 const [kilometers, setKilometers] = useState(0);
 const [country, setCountry] = useState('Unknown');
+const [stateCode, setStateCode] = useState('Unknown');
+const [countryCode, setCountryCode] = useState('Unknown');
+const getGeo = async () => {
+    const response = await fetch(
+      `https://geocode.maps.co/search?city=${search}`);
+    const data = await response.json();
+    setTheLat(data[0].lat);
+    setTheLon(data[0].lon);
+};
 const getArea = async () => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?lat=${theLat}&lon=${theLon}&format=json&zoom=10`);
     const data = await response.json();
    if (data.address && data.address.country) {
         setCountry(data.address.country);
+        setStateCode(data.address.state);
+        setCountryCode(data.address.country_code);
     } else {
         setCountry('Unknown');
     }
@@ -109,11 +120,6 @@ const calculateArea = (boundingBox) => {
 };
 const grabWeather = async () => {
 const openWeatherAPIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-    const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=${openWeatherAPIKey}`);
-    const coordinates = await coords.json();
-    const { lat, lon} = coordinates[0];
-    setTheLat(lat.toFixed(5));
-    setTheLon(lon.toFixed(5));
     const weather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=${openWeatherAPIKey}`);
     const weatherData = await weather.json();
     if (weatherData.cod === '200') {
@@ -143,8 +149,9 @@ const goHome = () => {
 	}
 
 useEffect(() =>{
-grabWeather();
+getGeo();
 getArea();
+grabWeather();
 getElevation();
 getTimezone();
 },[search]);
