@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Icon } from '@iconify/react';
 import {useNavigate} from 'react-router-dom';
 import { Button } from 'antd';
+import gsap from 'gsap';
 export default function Home() {
 const [search, setSearch] = useState('');
 const navigate = useNavigate();
@@ -13,6 +14,15 @@ const sendSearch = () => {
 		navigate(`/dashboard/${search}`)
 	}
 }
+  useEffect(() => {
+    const titleLetters = document.querySelectorAll('.flicker-title');
+    const tl = gsap.timeline({ repeat: -1 });
+
+    titleLetters.forEach((letter, index) => {
+      const delay = index * 0.1; // Adjust the delay based on your preference
+      tl.to(letter, { opacity: 1, delay, duration: 0.5 });
+    });
+  }, []);
 return (
 	<div className= "Home">
 	 <div className="links">
@@ -27,19 +37,19 @@ return (
         </a>
       </div>
 		<div className= "Title">
-	  <span className="flicker-title" style={{ "--letter-delay": "0.25s" }}>	<Icon icon="mdi:globe" /> </span>
-		<span className="flicker-title"style={{ "--letter-delay": "0.5s" }}>G</span>
-  <span className="flicker-title" style={{ "--letter-delay": "0.75s" }}>l</span>
-  <span className="flicker-title"style={{ "--letter-delay": "1s" }}>o</span>
-  <span className="flicker-title"style={{ "--letter-delay": "1.25s" }}>b</span>
-  <span className="flicker-title"style={{ "--letter-delay": "1.5s" }}>e</span>
-  <span className="flicker-title"style={{ "--letter-delay": "1.75s" }}>G</span>
-  <span className="flicker-title"style={{ "--letter-delay": "2s" }}>l</span>
-  <span className="flicker-title"style={{ "--letter-delay": "2.25s" }}>a</span>
-  <span className="flicker-title"style={{ "--letter-delay": "2.5s" }}>n</span>
-  <span className="flicker-title"style={{ "--letter-delay": "2.75s" }}>c</span>
-  <span className="flicker-title"style={{ "--letter-delay": "3s" }}>e</span>
- <span className="flicker-title"style={{ "--letter-delay": "3.25s" }}>		<Icon icon="mdi:globe" /> </span>
+	  <span className="flicker-title">	<Icon icon="mdi:globe" /> </span>
+		<span className="flicker-title">G</span>
+  <span className="flicker-title" >l</span>
+  <span className="flicker-title">o</span>
+  <span className="flicker-title">b</span>
+  <span className="flicker-title">e</span>
+  <span className="flicker-title">G</span>
+  <span className="flicker-title">l</span>
+  <span className="flicker-title">a</span>
+  <span className="flicker-title">n</span>
+  <span className="flicker-title">c</span>
+  <span className="flicker-title">e</span>
+ <span className="flicker-title">		<Icon icon="mdi:globe" /> </span>
 		<div>
 		<input type ="text" placeholder="enter a city..."  onChange={(event) => setSearch(event.target.value)}/>
 		<Button onClick={sendSearch} > Search </Button >

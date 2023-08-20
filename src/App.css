@@ -53,15 +53,7 @@ z-index: 5;
   }
 }
 .flicker-title {
+  opacity:0;
   display: inline-block;
 }
 
-.flicker-title span {
-animation: flicker 5s infinite;
-  opacity: 0;
-  animation-fill-mode: forwards;
-  animation-delay: var(--letter-delay, 0s); 
-}
-.flicker-title span:last-child {
-  animation-delay: 3.25s;
-}
