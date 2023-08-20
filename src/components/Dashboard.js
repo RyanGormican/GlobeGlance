@@ -34,9 +34,27 @@ const getArea = async () => {
       `https://nominatim.openstreetmap.org/search?city=${city}&state=${state}&country=${country}&format=json`
     );
     const areaData = await areaResponse.json();
-    console.log(areaData);
+    const boundingBox = areaData.boundingBox
+    const area = calculateArea(boundingBox);
+
+    setKilometers(area);
 
 
+};
+
+const calculateArea = (boundingBox) => {
+if (boundingBox.length===4){
+    const lat1= parseFloat(boundingBox[0]);
+    const lat2= parseFloat(boundingBox[1]);
+    const lon1= parseFloat(boundingBox[2]);
+    const lon2= parseFloat(boundingBox[2]);
+    const areaDegrees = ( lat2-lat1) * (lon2- lon1);
+    c
+
+}
+    return area.toFixed(2);
+}
+return null;
 };
 const grabWeather = async () => {
     const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=7bc27f1250aecc83d9e85aa10edc9203`);
