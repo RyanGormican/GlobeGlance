@@ -157,7 +157,7 @@ const openWeatherAPIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 };
 const goHome = () => {
 		navigate('/')
-	}
+	};
 
 useEffect(() =>{
 getGeo();
@@ -274,7 +274,7 @@ return (
           <Col span={12} style={{ fontFamily: 'Arial, sans-serif' }}>
           {`${(feelsliketemperature-273.15).toFixed(1)}\u00B0C`}
           </Col>
-        </Row>
+       <div class="ant-row ant-row-center css-17a39f8" style="margin-left: -8px; margin-right: -8px; row-gap: 16px;">…</div>flex </Row>
         <Row gutter={[16, 16]} justify="center">
           <Col span={12}>
             Weather:
@@ -302,8 +302,5 @@ return (
       </div>
 		</div>
 	</div>
-)
-
-
-
+);
 }
