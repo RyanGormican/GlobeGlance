@@ -25,7 +25,11 @@ const getArea = async () => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?lat=${theLat}&lon=${theLon}&format=json&zoom=10`);
     const data = await response.json();
-    setCountry(data.address.country || 'Unknown' );
+   if (data.address && data.address.country) {
+        setCountry(data.address.country);
+    } else {
+        setCountry('Unknown');
+    }
     const boundingBox = data.boundingbox;
    const area = calculateArea(boundingBox);
 
@@ -179,7 +183,7 @@ return (
             Elevation:
           </Col>
           <Col span={12}>
-                 {elevation} M
+                 {elevation} m
           </Col>
         </Row>
            <Row gutter={[16, 16]}>
@@ -217,7 +221,7 @@ return (
             Area:
           </Col>
           <Col span={12}>
-          {kilometers.toLocaleString()} KM<sup>2</sup>
+          {kilometers.toLocaleString()} km<sup>2</sup>
           </Col>
         </Row>
             <Row gutter={[16, 16]}>
