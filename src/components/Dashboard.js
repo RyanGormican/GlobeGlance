@@ -20,17 +20,37 @@ export default function Dashboard() {
   const [timezone, setTimezone] = useState(0);
   const [kilometers, setKilometers] = useState(0);
   const [country, setCountry] = useState("Unknown");
-  const getGeo = async () => {
+const getGeo = async () => {
+  try {
     const response = await fetch(
       `https://geocode.maps.co/search?city=${search}`
     );
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    
     const data = await response.json();
-    console.log(data);
-    setTheLat(data[0].lat);
-    setTheLon(data[0].lon);
-    console.log(theLat);
-    console.log(theLon);
-  };
+    
+    if (Array.isArray(data) && data.length > 0) {
+      const firstResult = data[0];
+      
+      if (firstResult.lat && firstResult.lon) {
+        setTheLat(firstResult.lat);
+        setTheLon(firstResult.lon);
+        console.log(theLat);
+        console.log(theLon);
+      } else {
+        console.log('Latitude and longitude not found in data');
+      }
+    } else {
+      console.log('No data received');
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
   const getArea = async () => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?lat=${theLat}&lon=${theLon}&format=json&zoom=10`
