@@ -48,12 +48,13 @@ const getArea = async () => {
 
 };
 const getTimezone = async () => {
-const timezoneKey = process.env.REACT_APP_TIMEZONE_API_KEY;
-const response = await fetch(
-`http://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneKey}&format=json&by=position&lat=${theLat}&lng=${theLon}`
-);
-  const data = await response.json();
-  const abbreviation = data.abbreviation;
+    try {
+        const timezoneKey = process.env.REACT_APP_TIMEZONE_API_KEY;
+        const response = await fetch(
+            `http://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneKey}&format=json&by=position&lat=${theLat}&lng=${theLon}`
+        );
+        const data = await response.json();
+         const abbreviation = data.abbreviation;
 
 const timeZoneMapping = {
   'CST': 'Central Standard Time',
@@ -101,14 +102,24 @@ const timeZoneMapping = {
   'UTC-11': 'Coordinated Universal Time-11',
 };
   setTimezone(timeZoneMapping[abbreviation] || 'Unknown');
+    } catch (error) {
+        console.error("Error fetching timezone data:", error);
+    }
+};
+
+ 
 };
 const getElevation = async () => {
-
-    const response = await fetch(
-      `http://geogratis.gc.ca/services/elevation/cdem/altitude?lat=${theLat}&lon=${theLon}`);
-    const data = await response.json();
-    setElevation(data.altitude);
-}
+    try {
+        const response = await fetch(
+            `http://geogratis.gc.ca/services/elevation/cdem/altitude?lat=${theLat}&lon=${theLon}`
+        );
+        const data = await response.json();
+        setElevation(data.altitude);
+    } catch (error) {
+        console.error("Error fetching elevation data:", error);
+    }
+};
 const calculateArea = (boundingBox) => {
     const lat1= parseFloat(boundingBox[0]);
     const lat2= parseFloat(boundingBox[1]);
