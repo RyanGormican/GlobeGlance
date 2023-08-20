@@ -24,37 +24,28 @@ const getArea = async () => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?lat=${theLat}&lon=${theLon}&format=json&zoom=10`);
     const data = await response.json();
-    console.log(data);
     setCountry(data.address.country);
     const address = data.address;
      const city = address.city || address.town || address.village || address.hamlet;
      const state = address.state || address.region;
      const country = address.country;
-     const areaResponse = await fetch(
-      `https://nominatim.openstreetmap.org/search?city=${city}&state=${state}&country=${country}&format=json`
-    );
-    const areaData = await areaResponse.json();
-    const boundingBox = areaData.boundingBox
-    const area = calculateArea(boundingBox);
+    console.log(data);
+    //const boundingBox = areaData[0].boundingbox;
+   // const area = calculateArea(boundingBox);
 
-    setKilometers(area);
+    //setKilometers(area);
 
 
 };
 
 const calculateArea = (boundingBox) => {
-if (boundingBox.length===4){
     const lat1= parseFloat(boundingBox[0]);
     const lat2= parseFloat(boundingBox[1]);
     const lon1= parseFloat(boundingBox[2]);
-    const lon2= parseFloat(boundingBox[2]);
+    const lon2= parseFloat(boundingBox[3]);
     const areaDegrees = ( lat2-lat1) * (lon2- lon1);
-    c
-
-}
-    return area.toFixed(2);
-}
-return null;
+    const area = (areaDegrees /510100000 )*510100000;
+     return area.toFixed(2);
 };
 const grabWeather = async () => {
     const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=7bc27f1250aecc83d9e85aa10edc9203`);
