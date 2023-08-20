@@ -7,8 +7,8 @@ const params = useParams();
 const [temperature, setTemperature] = useState('');
 const navigate = useNavigate();
 const search = params.search;
-const [theLat, setTheLat] = useState(0);
-const [theLon, setTheLon] = useState(0);
+const [theLat, setTheLat] = useState(50.4452);
+const [theLon, setTheLon] = useState(-104.618896);
 const [windspeed,setWindSpeed] = useState(0);
 const [weather, setWeather] = useState('');
 const [humidity, setHumidity] = useState(0);
@@ -18,14 +18,24 @@ const [sunrise, setSunrise] = useState(0);
 const [sunset, setSunset] = useState(0);
 const [timezone, setTimezone] = useState(0);
 const [kilometers, setKilometers] = useState(0);
-
+const [country, setCountry] = useState('');
 const getArea = async () => {
-  try {
+
     const response = await fetch(
-      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10`
-    );
+      `https://nominatim.openstreetmap.org/reverse?lat=${theLat}&lon=${theLon}&format=json&zoom=10`);
     const data = await response.json();
     console.log(data);
+    setCountry(data.address.country);
+    const address = data.address;
+     const city = address.city || address.town || address.village || address.hamlet;
+     const state = address.state || address.region;
+     const country = address.country;
+     const areaResponse = await fetch(
+      `https://nominatim.openstreetmap.org/search?city=${city}&state=${state}&country=${country}&format=json`
+    );
+    const areaData = await areaResponse.json();
+    console.log(areaData);
+
 
 };
 const grabWeather = async () => {
@@ -76,7 +86,7 @@ return (
 		 <div>
          <Row justify="center">
           <Col span={24}>
-            <h1>{search}</h1>
+            <h1>{search}, {country}</h1>
           </Col>
            <Col span={24}>
             <h1>Geographical <Icon icon="material-symbols:map" /></h1>
