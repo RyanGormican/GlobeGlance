@@ -38,8 +38,10 @@ const getGeo = async () => {
       if (firstResult.lat && firstResult.lon) {
         setTheLat(firstResult.lat);
         setTheLon(firstResult.lon);
-        console.log(theLat);
-        console.log(theLon);
+          getArea();
+    grabWeather();
+    getElevation();
+    getTimezone();
       } else {
         console.log('Latitude and longitude not found in data');
       }
@@ -181,10 +183,7 @@ const getGeo = async () => {
 
   useEffect(() => {
     getGeo();
-    getArea();
-    grabWeather();
-    getElevation();
-    getTimezone();
+  
   }, [search]);
   return (
     <div className="Home">
