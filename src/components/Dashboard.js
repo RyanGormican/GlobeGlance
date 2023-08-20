@@ -25,11 +25,8 @@ export default function Dashboard() {
       `https://geocode.maps.co/search?city=${search}`
     );
     const data = await response.json();
-    console.log(data);
     setTheLat(data[0].lat);
     setTheLon(data[0].lon);
-    console.log(theLat);
-    console.log(theLon);
   };
   const getArea = async () => {
     const response = await fetch(
@@ -50,7 +47,7 @@ export default function Dashboard() {
     try {
       const timezoneKey = process.env.REACT_APP_TIMEZONE_API_KEY;
       const response = await fetch(
-        `http://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneKey}&format=json&by=position&lat=${theLat}&lng=${theLon}`
+        `https://api.timezonedb.com/v2.1/get-time-zone?key=${timezoneKey}&format=json&by=position&lat=${theLat}&lng=${theLon}`
       );
       const data = await response.json();
       const abbreviation = data.abbreviation;
@@ -109,7 +106,7 @@ export default function Dashboard() {
   const getElevation = async () => {
     try {
       const response = await fetch(
-        `http://geogratis.gc.ca/services/elevation/cdem/altitude?lat=${theLat}&lon=${theLon}`
+        `https://geogratis.gc.ca/services/elevation/cdem/altitude?lat=${theLat}&lon=${theLon}`
       );
       const data = await response.json();
       setElevation(data.altitude);
@@ -128,8 +125,6 @@ export default function Dashboard() {
   };
   const grabWeather = async () => {
     const openWeatherAPIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-    console.log(theLat);
-    console.log(theLon);
     const weather = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=${openWeatherAPIKey}`
     );
