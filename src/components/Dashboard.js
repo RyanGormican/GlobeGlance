@@ -17,6 +17,17 @@ const [population, setPopulation] = useState(0);
 const [sunrise, setSunrise] = useState(0);
 const [sunset, setSunset] = useState(0);
 const [timezone, setTimezone] = useState(0);
+const [kilometers, setKilometers] = useState(0);
+
+const getArea = async () => {
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10`
+    );
+    const data = await response.json();
+    console.log(data);
+
+};
 const grabWeather = async () => {
     const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=7bc27f1250aecc83d9e85aa10edc9203`);
     const coordinates = await coords.json();
@@ -53,7 +64,8 @@ const goHome = () => {
 	}
 
 useEffect(() =>{
-grabWeather();
+
+getArea();
 },[search]);
 return (
 	<div className="Home">
@@ -114,6 +126,14 @@ return (
           </Col>
           <Col span={12}>
           {population}
+          </Col>
+        </Row>
+         <Row gutter={[16, 16]}>
+          <Col span={12}>
+            Area
+          </Col>
+          <Col span={12}>
+          {kilometers} KM^2
           </Col>
         </Row>
           
