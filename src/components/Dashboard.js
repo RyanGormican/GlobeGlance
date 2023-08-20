@@ -20,8 +20,6 @@ export default function Dashboard() {
   const [timezone, setTimezone] = useState(0);
   const [kilometers, setKilometers] = useState(0);
   const [country, setCountry] = useState("Unknown");
-  const [stateCode, setStateCode] = useState("Unknown");
-  const [countryCode, setCountryCode] = useState("Unknown");
   const getGeo = async () => {
     const response = await fetch(
       `https://geocode.maps.co/search?city=${search}`
@@ -37,8 +35,6 @@ export default function Dashboard() {
     const data = await response.json();
     if (data.address && data.address.country) {
       setCountry(data.address.country);
-      setStateCode(data.address.state);
-      setCountryCode(data.address.country_code);
     } else {
       setCountry("Unknown");
     }
@@ -129,6 +125,8 @@ export default function Dashboard() {
   };
   const grabWeather = async () => {
     const openWeatherAPIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+    console.log(theLat);
+    console.log(theLon);
     const weather = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=${openWeatherAPIKey}`
     );
