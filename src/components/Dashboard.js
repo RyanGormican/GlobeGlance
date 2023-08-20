@@ -130,31 +130,32 @@ const calculateArea = (boundingBox) => {
      return area.toFixed(2);
 };
 const grabWeather = async () => {
-const openWeatherAPIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-    const weather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=${openWeatherAPIKey}`);
-    const weatherData = await weather.json();
-    if (weatherData.cod === '200') {
-        // Extract relevant weather information
-        const currentWeather = weatherData.list[0];
-        const weatherDescription = currentWeather.weather[0].description;
-        const windSpeed = currentWeather.wind.speed;
-        const temperature = currentWeather.main.temp;
-        // Update the state with the extracted data
-        setTemperature(temperature.toFixed(1));
-        setWeather(weatherDescription);
-        setWindSpeed(windSpeed);
-        setHumidity(currentWeather.main.humidity)
-        setFeelsLikeTemperature((currentWeather.main.feels_like).toFixed(1))
-        setPopulation(weatherData.city.population)
-        const sunriseTime = new Date (weatherData.city.sunrise * 1000);
-         const sunsetTime = new Date (weatherData.city.sunset * 1000);
-         const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
-        setSunrise(sunriseTime.toLocaleTimeString('en-US', timeOptions));
-        setSunset(sunsetTime.toLocaleTimeString('en-US', timeOptions));
-      } else {
-        console.log('Error fetching weather data:', weatherData.message);
-      }
+  const openWeatherAPIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+  const weather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=${openWeatherAPIKey}`);
+  const weatherData = await weather.json();
+  if (weatherData.cod === '200') {
+    // Extract relevant weather information
+    const currentWeather = weatherData.list[0];
+    const weatherDescription = currentWeather.weather[0].description;
+    const windSpeed = currentWeather.wind.speed;
+    const temperature = currentWeather.main.temp;
+    // Update the state with the extracted data
+    setTemperature(temperature.toFixed(1));
+    setWeather(weatherDescription);
+    setWindSpeed(windSpeed);
+    setHumidity(currentWeather.main.humidity);
+    setFeelsLikeTemperature(currentWeather.main.feels_like.toFixed(1));
+    setPopulation(weatherData.city.population);
+    const sunriseTime = new Date(weatherData.city.sunrise * 1000);
+    const sunsetTime = new Date(weatherData.city.sunset * 1000);
+    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+    setSunrise(sunriseTime.toLocaleTimeString('en-US', timeOptions));
+    setSunset(sunsetTime.toLocaleTimeString('en-US', timeOptions));
+  } else {
+    console.log('Error fetching weather data:', weatherData.message);
+  }
 };
+
 const goHome = () => {
 		navigate('/')
 	};
@@ -274,7 +275,6 @@ return (
           <Col span={12} style={{ fontFamily: 'Arial, sans-serif' }}>
           {`${(feelsliketemperature-273.15).toFixed(1)}\u00B0C`}
           </Col>
-       <div class="ant-row ant-row-center css-17a39f8" style="margin-left: -8px; margin-right: -8px; row-gap: 16px;">…</div>flex </Row>
         <Row gutter={[16, 16]} justify="center">
           <Col span={12}>
             Weather:
