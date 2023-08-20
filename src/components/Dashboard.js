@@ -25,6 +25,7 @@ export default function Dashboard() {
       `https://geocode.maps.co/search?city=${search}`
     );
     const data = await response.json();
+    console.log(data);
     setTheLat(data[0].lat);
     setTheLon(data[0].lon);
   };
