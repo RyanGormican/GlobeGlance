@@ -7,8 +7,8 @@ const params = useParams();
 const [temperature, setTemperature] = useState('');
 const navigate = useNavigate();
 const search = params.search;
-const [theLat, setTheLat] = useState(50.4452);
-const [theLon, setTheLon] = useState(-104.618896);
+const [theLat, setTheLat] = useState(0);
+const [theLon, setTheLon] = useState(0);
 const [windspeed,setWindSpeed] = useState(0);
 const [weather, setWeather] = useState('');
 const [humidity, setHumidity] = useState(0);
@@ -37,13 +37,25 @@ const getArea = async () => {
 
 
 };
+const getTimezone = async () => {
+const response = await fetch(
+`http://api.timezonedb.com/v2.1/get-time-zone?key=GOHK7HORUUNM&format=json&by=position&lat=${theLat}&lng=${theLon}`
+);
+  const data = await response.json();
+  const abbreviation = data.abbreviation;
+
+  const timeZoneMapping = {
+  'CST': 'Central Standard Time',
+  };
+  
+  setTimezone(timeZoneMapping[abbreviation] || 'Unknown');
+};
 const getElevation = async () => {
 
     const response = await fetch(
       `http://geogratis.gc.ca/services/elevation/cdem/altitude?lat=${theLat}&lon=${theLon}`);
     const data = await response.json();
-    console.log(data);
-    setElevation();
+    setElevation(data.altitude);
 }
 const calculateArea = (boundingBox) => {
     const lat1= parseFloat(boundingBox[0]);
@@ -92,7 +104,8 @@ const goHome = () => {
 useEffect(() =>{
 //getWeather();
 //getArea();
-getElevation();
+//getElevation();
+  getTimezone();
 },[search]);
 return (
 	<div className="Home">
@@ -124,21 +137,21 @@ return (
           <Col span={12}>
           {theLon}
           </Col>
+            </Row>
          <Row gutter={[16, 16]}>
           <Col span={12}>
             Elevation:
           </Col>
           <Col span={12}>
-                 {elevation}
+                 {elevation} M
           </Col>
-        </Row>
         </Row>
            <Row gutter={[16, 16]}>
           <Col span={12}>
-            Timezone
+            Timezone:
           </Col>
           <Col span={12}>
-       
+            {timezone}
           </Col>
         </Row>
         <Row gutter={[16, 16]}>
@@ -173,7 +186,7 @@ return (
         </Row>
             <Row gutter={[16, 16]}>
           <Col span={12}>
-            Region:
+            Country:
           </Col>
           <Col span={12}>
                  {country}
