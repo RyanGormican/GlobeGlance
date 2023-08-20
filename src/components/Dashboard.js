@@ -29,11 +29,10 @@ const getArea = async () => {
      const city = address.city || address.town || address.village || address.hamlet;
      const state = address.state || address.region;
      const country = address.country;
-    console.log(data);
-    //const boundingBox = areaData[0].boundingbox;
-   // const area = calculateArea(boundingBox);
+    const boundingBox = data.boundingbox;
+   const area = calculateArea(boundingBox);
 
-    //setKilometers(area);
+    setKilometers(area);
 
 
 };
@@ -44,7 +43,7 @@ const calculateArea = (boundingBox) => {
     const lon1= parseFloat(boundingBox[2]);
     const lon2= parseFloat(boundingBox[3]);
     const areaDegrees = ( lat2-lat1) * (lon2- lon1);
-    const area = (areaDegrees /510100000 )*510100000;
+    const area = (areaDegrees) * 111.32 * 111.32;
      return area.toFixed(2);
 };
 const grabWeather = async () => {
