@@ -16,6 +16,7 @@ const [feelsliketemperature,setFeelsLikeTemperature] = useState(0);
 const [population, setPopulation] = useState(0);
 const [sunrise, setSunrise] = useState(0);
 const [sunset, setSunset] = useState(0);
+const [elevation, setElevation] = useState(0);
 const [timezone, setTimezone] = useState(0);
 const [kilometers, setKilometers] = useState(0);
 const [country, setCountry] = useState('');
@@ -36,7 +37,14 @@ const getArea = async () => {
 
 
 };
+const getElevation = async () => {
 
+    const response = await fetch(
+      `http://geogratis.gc.ca/services/elevation/cdem/altitude?lat=${theLat}&lon=${theLon}`);
+    const data = await response.json();
+    console.log(data);
+    setElevation();
+}
 const calculateArea = (boundingBox) => {
     const lat1= parseFloat(boundingBox[0]);
     const lat2= parseFloat(boundingBox[1]);
@@ -82,8 +90,9 @@ const goHome = () => {
 	}
 
 useEffect(() =>{
-
-getArea();
+//getWeather();
+//getArea();
+getElevation();
 },[search]);
 return (
 	<div className="Home">
@@ -94,7 +103,7 @@ return (
 		 <div>
          <Row justify="center">
           <Col span={24}>
-            <h1>{search}, {country}</h1>
+            <h1>{search}</h1>
           </Col>
            <Col span={24}>
             <h1>Geographical <Icon icon="material-symbols:map" /></h1>
@@ -115,6 +124,14 @@ return (
           <Col span={12}>
           {theLon}
           </Col>
+         <Row gutter={[16, 16]}>
+          <Col span={12}>
+            Elevation:
+          </Col>
+          <Col span={12}>
+                 {elevation}
+          </Col>
+        </Row>
         </Row>
            <Row gutter={[16, 16]}>
           <Col span={12}>
@@ -140,7 +157,7 @@ return (
         </Row>
          <Row gutter={[16, 16]}>
           <Col span={12}>
-            Population
+            Population:
           </Col>
           <Col span={12}>
           {population}
@@ -148,12 +165,22 @@ return (
         </Row>
          <Row gutter={[16, 16]}>
           <Col span={12}>
-            Area
+            Area:
           </Col>
           <Col span={12}>
-          {kilometers} KM^2
+          {kilometers.toLocaleString()} KM<sup>2</sup>
           </Col>
         </Row>
+            <Row gutter={[16, 16]}>
+          <Col span={12}>
+            Region:
+          </Col>
+          <Col span={12}>
+                 {country}
+          </Col>
+        </Row>
+
+
           
              <Row gutter={[16, 16]}>
           <Col span={24}>
