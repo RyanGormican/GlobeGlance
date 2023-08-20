@@ -7,8 +7,8 @@ export default function Dashboard() {
   const [temperature, setTemperature] = useState("");
   const navigate = useNavigate();
   const search = params.search;
-  const [theLat, setTheLat] = useState(40.7128);
-  const [theLon, setTheLon] = useState(-73.935242);
+  const [theLat, setTheLat] = useState(0);
+  const [theLon, setTheLon] = useState(0);
   const [windspeed, setWindSpeed] = useState(0);
   const [weather, setWeather] = useState("Unknown");
   const [humidity, setHumidity] = useState(0);
@@ -25,8 +25,11 @@ export default function Dashboard() {
       `https://geocode.maps.co/search?city=${search}`
     );
     const data = await response.json();
+    console.log(data);
     setTheLat(data[0].lat);
     setTheLon(data[0].lon);
+    console.log(theLat);
+    console.log(theLon);
   };
   const getArea = async () => {
     const response = await fetch(
