@@ -25,11 +25,7 @@ const getArea = async () => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?lat=${theLat}&lon=${theLon}&format=json&zoom=10`);
     const data = await response.json();
-    setCountry(data.address.country);
-    const address = data.address;
-     const city = address.city || address.town || address.village || address.hamlet;
-     const state = address.state || address.region;
-     const country = address.country;
+    setCountry(data.address.country || 'Unknown' );
     const boundingBox = data.boundingbox;
    const area = calculateArea(boundingBox);
 
@@ -111,8 +107,8 @@ const grabWeather = async () => {
     const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q={search}&limit=1&appid=7bc27f1250aecc83d9e85aa10edc9203`);
     const coordinates = await coords.json();
     const { lat, lon} = coordinates[0];
-    setTheLat(lat);
-    setTheLon(lon);
+    setTheLat(lat.toFixed(5));
+    setTheLon(lon.toFixed(5));
     const weather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${theLat}&lon=${theLon}&appid=7bc27f1250aecc83d9e85aa10edc9203`);
     const weatherData = await weather.json();
     if (weatherData.cod === '200') {
@@ -122,11 +118,11 @@ const grabWeather = async () => {
         const windSpeed = currentWeather.wind.speed;
         const temperature = currentWeather.main.temp;
         // Update the state with the extracted data
-        setTemperature(temperature);
+        setTemperature(temperature.toFixed(1));
         setWeather(weatherDescription);
         setWindSpeed(windSpeed);
         setHumidity(currentWeather.main.humidity)
-        setFeelsLikeTemperature(currentWeather.main.feels_like)
+        setFeelsLikeTemperature((currentWeather.main.feels_like).toFixed(1))
         setPopulation(weatherData.city.population)
         const sunriseTime = new Date (weatherData.city.sunrise * 1000);
          const sunsetTime = new Date (weatherData.city.sunset * 1000);
@@ -142,10 +138,10 @@ const goHome = () => {
 	}
 
 useEffect(() =>{
-//getWeather();
-//getArea();
-//getElevation();
-  getTimezone();
+grabWeather();
+getArea();
+getElevation();
+getTimezone();
 },[search]);
 return (
 	<div className="Home">
@@ -245,7 +241,7 @@ return (
             Temperature:
           </Col>
           <Col span={12} style={{ fontFamily: 'Arial, sans-serif' }}>
-          {`${temperature-273.15}\u00B0C`}
+          {`${(temperature-273.15).toFixed(1)}\u00B0C`}
           </Col>
         </Row>
           <Row gutter={[16, 16]}>
@@ -253,7 +249,7 @@ return (
             Feels Like:
           </Col>
           <Col span={12} style={{ fontFamily: 'Arial, sans-serif' }}>
-          {`${(feelsliketemperature-273.15)}\u00B0C`}
+          {`${(feelsliketemperature-273.15).toFixed(1)}\u00B0C`}
           </Col>
         </Row>
         <Row gutter={[16, 16]} justify="center">
