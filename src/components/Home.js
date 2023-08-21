@@ -21,14 +21,14 @@ const sendSearch = () => {
 
      titleLetters.forEach((letter, index) => {
       const delay = index * 0.01;
-      const color = '#199c35';
-      if (index <= 6)
-      {
       let color = '#199c35';
+      if (index < 6)
+      {
+      color = '#199c35';
       }
       else
       {
-      let color = '#0e76a8';
+      color = '#0e76a8';
       }
       tl.to(letter, { opacity: 1, color, delay, duration: 0.2 });
     });
