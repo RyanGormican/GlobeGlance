@@ -20,11 +20,20 @@ const sendSearch = () => {
     const tl = gsap.timeline({ repeat: -1 });
 
      titleLetters.forEach((letter, index) => {
-      const delay = index * 0.005;
-      tl.to(letter, { opacity: 1, delay, duration: 0.2 });
+      const delay = index * 0.01;
+      const color = '#199c35';
+      if (index <= 6)
+      {
+      let color = '#199c35';
+      }
+      else
+      {
+      let color = '#0e76a8';
+      }
+      tl.to(letter, { opacity: 1, color, delay, duration: 0.2 });
     });
     tl.to({}, {  duration: 5 });
-    tl.set(titleLetters, {opacity: 0});
+    tl.set(titleLetters, {opacity: 0.25});
     tl.pause(0);
     tl.restart();
   }, [animation]);
