@@ -19,6 +19,7 @@ export default function Dashboard() {
   const [elevation, setElevation] = useState(0);
   const [timezone, setTimezone] = useState(0);
   const [kilometers, setKilometers] = useState(0);
+    const [key, setKey] = useState(0);
   const [country, setCountry] = useState("Unknown");
 const getGeo = async () => {
   try {
@@ -36,6 +37,7 @@ const getGeo = async () => {
       const firstResult = data[0];
       
       if (firstResult.lat && firstResult.lon) {
+         setKey(1);
         setTheLat(firstResult.lat);
         setTheLon(firstResult.lon);
       } else {
@@ -181,10 +183,13 @@ useEffect(() => {
 getGeo();
 }, [search]);
 useEffect(() => {
+if (key === 1)
+  {
 getArea();
 grabWeather();
 getElevation();
 getTimezone();
+}
 }, [theLon]);
 
   return (
