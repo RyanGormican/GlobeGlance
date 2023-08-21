@@ -44,14 +44,7 @@ z-index: 5;
 	cursor: pointer;
 		z-index: 1;
 }
-@keyframes flicker {
-  0%, 100% {
-    opacity: 0;
-  }
-  10%, 90% {
-    opacity: 1;
-  }
-}
+
 .flicker-title {
   opacity:0;
   display: inline-block;

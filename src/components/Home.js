@@ -6,6 +6,7 @@ import gsap from 'gsap';
 export default function Home() {
 const [search, setSearch] = useState('');
 const navigate = useNavigate();
+const [animation, setAnimation] = useState('');
 const sendSearch = () => {
 	if (!search)
 	{
@@ -18,11 +19,15 @@ const sendSearch = () => {
     const titleLetters = document.querySelectorAll('.flicker-title');
     const tl = gsap.timeline({ repeat: -1 });
 
-    titleLetters.forEach((letter, index) => {
-      const delay = index * 0.1; // Adjust the delay based on your preference
-      tl.to(letter, { opacity: 1, delay, duration: 0.5 });
+     titleLetters.forEach((letter, index) => {
+      const delay = index * 0.005;
+      tl.to(letter, { opacity: 1, delay, duration: 0.2 });
     });
-  }, []);
+    tl.to({}, {  duration: 5 });
+    tl.set(titleLetters, {opacity: 0});
+    tl.pause(0);
+    tl.restart();
+  }, [animation]);
 return (
 	<div className= "Home">
 	 <div className="links">
