@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Icon } from '@iconify/react';
 import {useNavigate} from 'react-router-dom';
-import { Button } from 'antd';
+import { Button,Input } from 'antd';
 import gsap from 'gsap';
 export default function Home() {
 const [search, setSearch] = useState('');
@@ -30,7 +30,7 @@ const sendSearch = () => {
       {
       color = '#0e76a8';
       }
-      tl.to(letter, { opacity: 1, color, delay, duration: 0.2 });
+      tl.to(letter, { opacity: 1, color, delay, duration: 0.1 });
     });
     tl.to({}, {  duration: 5 });
     tl.set(titleLetters, {opacity: 0.25});
@@ -65,8 +65,9 @@ return (
   <span className="flicker-title">e</span>
  <span className="flicker-title">		<Icon icon="mdi:globe" /> </span>
 		<div>
-		<input type ="text" placeholder="enter a city..."  onChange={(event) => setSearch(event.target.value)}/>
-		<Button onClick={sendSearch} > Search </Button >
+		<Input type ="text"  style={{ width: 300 }} placeholder="enter a city..."  onChange={(event) => setSearch(event.target.value)}/>
+		<Button onClick={sendSearch} >  Search </Button >
+
 		</div>
 		</div>
 		
@@ -76,3 +77,5 @@ return (
 
 
 }
+
+
