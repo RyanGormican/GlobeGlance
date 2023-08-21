@@ -16,11 +16,15 @@ export default function Dashboard() {
   const [population, setPopulation] = useState(0);
   const [sunrise, setSunrise] = useState(0);
   const [sunset, setSunset] = useState(0);
-  const [elevation, setElevation] = useState(0);
-  const [timezone, setTimezone] = useState(0);
+  const [elevation, setElevation] = useState("Unknown");
+  const [timezone, setTimezone] = useState("Unknown");
   const [kilometers, setKilometers] = useState(0);
     const [key, setKey] = useState(0);
   const [country, setCountry] = useState("Unknown");
+  const [windgustspeed, setWindGustSpeed] = useState(0);
+  const [atmospherePressure, setAtmospherePressure] = useState(0);
+  const [precipitation,setPrecipitation] = useState(0);
+  const [countryCode,setCountryCode]= useState("Unknown");
 const getGeo = async () => {
   try {
     const response = await fetch(
@@ -50,14 +54,19 @@ const getGeo = async () => {
     console.error('Error fetching data:', error);
   }
 };
+  const getDemographic = async () => {
 
+  };
   const getArea = async () => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/reverse?lat=${theLat}&lon=${theLon}&format=json&zoom=10`
     );
     const data = await response.json();
+    
     if (data.address && data.address.country) {
       setCountry(data.address.country);
+      setCountryCode(data.address.country_code);
+      setKey(2);
     } else {
       setCountry("Unknown");
     }
@@ -165,6 +174,9 @@ const getGeo = async () => {
       setHumidity(currentWeather.main.humidity);
       setFeelsLikeTemperature(currentWeather.main.feels_like.toFixed(1));
       setPopulation(weatherData.city.population);
+      setWindGustSpeed(currentWeather.wind.gust);
+      setPrecipitation(currentWeather.pop);
+      setAtmospherePressure(currentWeather.main.pressure);
       const sunriseTime = new Date(weatherData.city.sunrise * 1000);
       const sunsetTime = new Date(weatherData.city.sunset * 1000);
       const timeOptions = { hour: "numeric", minute: "numeric", hour12: true };
@@ -189,6 +201,10 @@ getArea();
 grabWeather();
 getElevation();
 getTimezone();
+}
+if (key === 2)
+{
+getDemographic();
 }
 }, [theLon]);
 
@@ -276,11 +292,23 @@ getTimezone();
           </Row>
           <Row gutter={[16, 16]} justify="center">
             <Col span={12}>Wind Speed:</Col>
-            <Col span={12}>{windspeed}</Col>
+            <Col span={12}>{windspeed}m/s</Col>
+          </Row>
+             <Row gutter={[16, 16]} justify="center">
+            <Col span={12}>Wind Gust Speed:</Col>
+            <Col span={12}>{windgustspeed}m/s</Col>
+          </Row>
+          <Row gutter={[16, 16]} justify="center">
+            <Col span={13}>Atomospheric Pressure:</Col>
+            <Col span={11}>{atmospherePressure}hPa</Col>
           </Row>
           <Row gutter={[16, 16]} justify="center">
             <Col span={12}>Humidity:</Col>
-            <Col span={12}>{humidity}</Col>
+            <Col span={12}>{humidity}%</Col>
+          </Row>
+          <Row gutter={[16, 16]} justify="center">
+            <Col span={14}>Probability of Precipitation:</Col>
+            <Col span={10}>{(precipitation)*100}%</Col>
           </Row>
         </div>
       </div>
